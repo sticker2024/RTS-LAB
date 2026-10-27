@@ -1,0 +1,21 @@
+3-task set (Sec 2.2.2): U = 0.750, rm_bound(3) = 0.780, RM sufficient test PASS, EDF U<=1 PASS
+4-task set (Sec 2.3.2): U = 0.875, rm_bound(4) = 0.757, RM sufficient test INCONCLUSIVE, EDF U<=1 PASS
+
+RTA (RM order) on 4-task set:
+  t1: R = 1, D = 4, iterations = 1, meets deadline
+  t2: R = 3, D = 6, iterations = 2, meets deadline
+  t4: R = 4, D = 8, iterations = 2, meets deadline
+  t3: R = 11, D = 12, iterations = 5, meets deadline
+
+Hyperperiod = 24. RM misses: [], switches 15; EDF misses: [], switches 14
+
+Priority inversion (L: 6-tick critical section from t=0, H arrives t=1, M arrives t=2, 4 ticks):
+  No protocol: H blocked 9 ticks, H finishes at t=12
+  With PIP   : H blocked 5 ticks, H finishes at t=8  (bound: one CS of L = 6)
+
+Context switches over hyperperiod: RM=15, EDF=14, LLF=17 (LLF misses: [])
+
+Constrained deadlines (RM order vs DM order):
+  RM order: ['a', 'b', 'c']  DM order: ['a', 'c', 'b']
+  RM sim misses: [('c', 0, 3)]
+  DM sim misses: []

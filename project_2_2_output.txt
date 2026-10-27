@@ -1,0 +1,111 @@
+====================================================================== 
+A_sec222_three_task
+Task set: 3 tasks, implicit deadlines, priority order = RM
+task       C    T    D        u
+t1         1    4    4   0.2500
+t2         2    6    6   0.3333
+t3         2   12   12   0.1667
+Total U = 0.7500
+RM bound n(2^(1/n)-1) = 0.7798 -> PASS (schedulable)
+EDF exact test U <= 1 -> PASS
+Simulation over 12 ticks (hyperperiod 12): RM misses = 0, EDF misses = 0
+-> RM ok=True, EDF ok=True
+
+====================================================================== 
+B_sec232_four_task
+Task set: 4 tasks, implicit deadlines, priority order = RM
+task       C    T    D        u
+t1         1    4    4   0.2500
+t2         2    6    6   0.3333
+t3         2   12   12   0.1667
+t4         1    8    8   0.1250
+Total U = 0.8750
+RM bound n(2^(1/n)-1) = 0.7568 -> FAIL (inconclusive)
+Response Time Analysis (priority order, highest first):
+  t1      R=1                    D=4    iters=1  OK
+  t2      R=3                    D=6    iters=2  OK
+  t4      R=4                    D=8    iters=2  OK
+  t3      R=11                   D=12   iters=5  OK
+RM verdict via RTA: SCHEDULABLE
+EDF exact test U <= 1 -> PASS
+Simulation over 24 ticks (hyperperiod 24): RM misses = 0, EDF misses = 0
+-> RM ok=True, EDF ok=True
+
+====================================================================== 
+C_bound_fails_rta_ok
+Task set: 3 tasks, implicit deadlines, priority order = RM
+task       C    T    D        u
+a          2    5    5   0.4000
+b          4   10   10   0.4000
+c          1   20   20   0.0500
+Total U = 0.8500
+RM bound n(2^(1/n)-1) = 0.7798 -> FAIL (inconclusive)
+Response Time Analysis (priority order, highest first):
+  a       R=2                    D=5    iters=1  OK
+  b       R=8                    D=10   iters=3  OK
+  c       R=9                    D=20   iters=3  OK
+RM verdict via RTA: SCHEDULABLE
+EDF exact test U <= 1 -> PASS
+Simulation over 20 ticks (hyperperiod 20): RM misses = 0, EDF misses = 0
+-> RM ok=True, EDF ok=True
+
+====================================================================== 
+D_overload
+Task set: 2 tasks, implicit deadlines, priority order = RM
+task       C    T    D        u
+x          3    4    4   0.7500
+y          2    5    5   0.4000
+Total U = 1.1500
+INFEASIBLE: U > 1, no uniprocessor schedule can meet all deadlines (both RM and EDF fail).
+RM bound n(2^(1/n)-1) = 0.8284 -> FAIL (inconclusive)
+EDF exact test U <= 1 -> FAIL
+Simulation over 20 ticks (hyperperiod 20): RM misses = 4, EDF misses = 3
+-> RM ok=False, EDF ok=False
+
+====================================================================== 
+E_constrained
+Task set: 3 tasks, constrained deadlines, priority order = DM
+task       C    T    D        u
+a          1    5    2   0.2000
+b          2    8    8   0.2500
+c          1   10    3   0.1000
+Total U = 0.5500
+RM/DM bound n(2^(1/n)-1) = 0.7798 applies to implicit deadlines only -> skipped, using RTA
+Response Time Analysis (priority order, highest first):
+  a       R=1                    D=2    iters=1  OK
+  c       R=2                    D=3    iters=2  OK
+  b       R=4                    D=8    iters=2  OK
+RM verdict via RTA: SCHEDULABLE
+EDF: U <= 1 -> PASS (necessary only for D<T); density sum C/D = 1.0833 -> sufficient test inconclusive
+Simulation over 40 ticks (hyperperiod 40): RM misses = 0, EDF misses = 0
+-> RM ok=True, EDF ok=True
+
+====================================================================== 
+F_eight_tasks
+Task set: 8 tasks, implicit deadlines, priority order = RM
+task       C    T    D        u
+t1         1   10   10   0.1000
+t2         1   12   12   0.0833
+t3         3   20   20   0.1500
+t4         1   15   15   0.0667
+t5         3   30   30   0.1000
+t6         4   40   40   0.1000
+t7         3   25   25   0.1200
+t8         1   50   50   0.0200
+Total U = 0.7400
+RM bound n(2^(1/n)-1) = 0.7241 -> FAIL (inconclusive)
+Response Time Analysis (priority order, highest first):
+  t1      R=1                    D=10   iters=1  OK
+  t2      R=2                    D=12   iters=2  OK
+  t4      R=3                    D=15   iters=2  OK
+  t3      R=6                    D=20   iters=2  OK
+  t7      R=9                    D=25   iters=2  OK
+  t5      R=14                   D=30   iters=4  OK
+  t6      R=19                   D=40   iters=3  OK
+  t8      R=20                   D=50   iters=3  OK
+RM verdict via RTA: SCHEDULABLE
+EDF exact test U <= 1 -> PASS
+Simulation over 500 ticks (hyperperiod 600): RM misses = 0, EDF misses = 0
+  (horizon capped; simulation does not cover a full hyperperiod)
+-> RM ok=True, EDF ok=True
+

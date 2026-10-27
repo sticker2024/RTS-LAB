@@ -1,0 +1,43 @@
+m = 4 cores
+
+set                  U_total    U/m  heur result     cores  U placed/m  per-core utilization
+1 balanced             3.000    75%  FF   OK             4       75.0%  [0.75, 0.75, 0.75, 0.75]
+1 balanced             3.000    75%  FFD  OK             4       75.0%  [0.75, 0.75, 0.75, 0.75]
+1 balanced             3.000    75%  BFD  OK             4       75.0%  [0.75, 0.75, 0.75, 0.75]
+1 balanced             3.000    75%  WF   OK             4       75.0%  [0.75, 0.75, 0.75, 0.75]
+                    lower bound ceil(U) = 3 cores; min cores needed: FF=4, FFD=4, BFD=4, WF=4
+
+2 skewed               2.650    66%  FF   OK             4       66.2%  [0.7, 0.7, 0.75, 0.5]
+2 skewed               2.650    66%  FFD  OK             4       66.2%  [0.7, 0.7, 0.75, 0.5]
+2 skewed               2.650    66%  BFD  OK             4       66.2%  [0.7, 0.7, 0.75, 0.5]
+2 skewed               2.650    66%  WF   OK             4       66.2%  [0.7, 0.7, 0.65, 0.6]
+                    lower bound ceil(U) = 3 cores; min cores needed: FF=4, FFD=4, BFD=4, WF=4
+
+3 tight                3.800    95%  FF   FAIL(4)        4       90.0%  [0.9, 0.9, 0.9, 0.9]
+3 tight                3.800    95%  FFD  FAIL(4)        4       90.0%  [0.9, 0.9, 0.9, 0.9]
+3 tight                3.800    95%  BFD  FAIL(4)        4       90.0%  [0.9, 0.9, 0.9, 0.9]
+3 tight                3.800    95%  WF   FAIL(4)        4       90.0%  [0.9, 0.9, 0.9, 0.9]
+                    lower bound ceil(U) = 4 cores; min cores needed: FF=5, FFD=5, BFD=5, WF=5
+
+4 adversarial          2.550    64%  FF   FAIL(1)        4       51.0%  [0.51, 0.51, 0.51, 0.51]
+4 adversarial          2.550    64%  FFD  FAIL(1)        4       51.0%  [0.51, 0.51, 0.51, 0.51]
+4 adversarial          2.550    64%  BFD  FAIL(1)        4       51.0%  [0.51, 0.51, 0.51, 0.51]
+4 adversarial          2.550    64%  WF   FAIL(1)        4       51.0%  [0.51, 0.51, 0.51, 0.51]
+                    lower bound ceil(U) = 3 cores; min cores needed: FF=5, FFD=5, BFD=5, WF=5
+
+5 order-sensitive      2.600    65%  FF   FAIL(1)        4       52.5%  [0.6, 0.5, 0.5, 0.5]
+5 order-sensitive      2.600    65%  FFD  OK             4       65.0%  [0.65, 0.65, 0.65, 0.65]
+5 order-sensitive      2.600    65%  BFD  OK             4       65.0%  [0.65, 0.65, 0.65, 0.65]
+5 order-sensitive      2.600    65%  WF   OK             4       65.0%  [0.65, 0.65, 0.65, 0.65]
+                    lower bound ceil(U) = 3 cores; min cores needed: FF=5, FFD=4, BFD=4, WF=4
+
+6 WF-hostile (m=3)     1.800    60%  FF   FAIL(1)        3       43.3%  [0.45, 0.45, 0.4]
+6 WF-hostile (m=3)     1.800    60%  FFD  OK             3       60.0%  [0.6, 0.8, 0.4]
+6 WF-hostile (m=3)     1.800    60%  BFD  OK             3       60.0%  [0.6, 0.8, 0.4]
+6 WF-hostile (m=3)     1.800    60%  WF   FAIL(1)        3       43.3%  [0.5, 0.35, 0.45]
+                    lower bound ceil(U) = 2 cores; min cores needed: FF=4, FFD=3, BFD=3, WF=4
+
+core 0: ['lg0', 'sm0'] misses = []
+core 1: ['lg1', 'sm1'] misses = []
+core 2: ['lg2', 'sm2'] misses = []
+core 3: ['lg3', 'sm3'] misses = []
